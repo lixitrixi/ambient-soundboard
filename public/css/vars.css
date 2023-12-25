@@ -1,3 +1,10 @@
 body {
-    
+  --size-cont-width: 96ch;
+  --size-pad-x: 2ch;
+  --size-pad-y: 1rem;
+  --size-dyn-col-min: 26ch;
+
+  --color-bg-1: #110020;
+  --color-bg-2: #23162f;
+  --color-text: #fff;
 }

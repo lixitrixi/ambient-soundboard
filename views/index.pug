@@ -1,5 +1,8 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .grid.dyn.gap
+    each t in tracks
+      .track.pad.flx.row.btn(data-id=t.id)
+        h2= t.name
+        //- span.material-symbols-outlined.mgn-l-a play_arrow

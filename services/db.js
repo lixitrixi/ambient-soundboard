@@ -1,3 +1,5 @@
+const { get } = require('../routes');
+
 require('dotenv').config();
 
 const con = require('mysql2').createConnection({
@@ -50,7 +52,7 @@ function getTrackTags(trackId) {
     });
 }
 
-getTracks = function() {
+function getTracks() {
     return new Promise(function(resolve, reject) {
         con.query('SELECT * FROM Tracks')
             .then(function(results) {
@@ -69,11 +71,29 @@ getTracks = function() {
     });
 }
 
-getTracks()
-    .then(function(tracks) {
-        console.log(tracks);
+function getTrack(trackId) {
+    return new Promise(function(resolve, reject) {
+        con.query('SELECT * FROM Tracks WHERE trackId = ?', [trackId])
+            .then(function(results) {
+                if (results[0].length == 0) {
+                    reject('Track not found');
+                } else {
+                    resultToTrack(results[0][0])
+                        .then(function(track) {
+                            resolve(track);
+                        })
+                        .catch(function(error) {
+                            reject(error);
+                        });
+                }
+            })
+            .catch(function(error) {
+                reject(error);
+            });
     });
+}
 
 module.exports = {
-    getTracks
+    getTracks,
+    getTrack
 };
