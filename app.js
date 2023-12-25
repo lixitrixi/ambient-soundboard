@@ -1,12 +1,12 @@
 const createError = require('http-errors');
 const express = require('express');
-var path = require('path');
-var logger = require('morgan');
+const path = require('path');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var apiRouter = require('./routes/api/index');
+const indexRouter = require('./routes/index');
+const apiRouter = require('./routes/api/index');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
