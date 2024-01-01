@@ -11,7 +11,7 @@ const con = require('mysql2').createConnection({
 
 con.connect()
     .then(() => console.log('Connected to database'))
-    .catch(() => console.error('Error connecting to DB: ' + err));
+    .catch((err) => console.error('Error connecting to DB: ' + err));
 
 function Track(id, name, fileName, tags) {
     this.id = id;
