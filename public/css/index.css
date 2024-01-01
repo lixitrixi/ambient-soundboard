@@ -1,52 +1,7 @@
-@import "vars.css";
-@import "text.css";
+@import "core.css";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* App-specific styles */
+
+.tag.active {
+    order: -1;
 }
-
-body { background-color: var(--color-bg-1) }
-html { scroll-behavior: smooth }
-
-.mgn, .mgn-x, .mgn-l { margin-left: var(--size-pad-x) }
-.mgn, .mgn-x, .mgn-r { margin-right: var(--size-pad-x) }
-.mgn, .mgn-y, .mgn-t { margin-top: var(--size-pad-y) }
-.mgn, .mgn-y, .mgn-b { margin-bottom: var(--size-pad-y) }
-
-.mgn-a, .mgn-x-a, .mgn-l-a { margin-left: auto }
-.mgn-a, .mgn-x-a, .mgn-r-a { margin-right: auto }
-.mgn-a, .mgn-y-a, .mgn-t-a { margin-top: auto }
-.mgn-a, .mgn-y-a, .mgn-b-a { margin-bottom: auto }
-
-.pad, .pad-x, .pad-l { padding-left: var(--size-pad-x) }
-.pad, .pad-x, .pad-r { padding-right: var(--size-pad-x) }
-.pad, .pad-y, .pad-t { padding-top: var(--size-pad-y) }
-.pad, .pad-y, .pad-b { padding-bottom: var(--size-pad-y) }
-
-.cont {
-  max-width: var(--size-cont-width);
-  margin: 0 auto;
-}
-
-.btn {
-  cursor: pointer;
-}
-.btn:hover {
-  background-color: var(--color-bg-2);
-}
-
-.flx { display: flex }
-.flx.col { flex-direction: column }
-.flx.row { flex-direction: row }
-.flx.jfy-sb { justify-content: space-between }
-.flx.jfy-c { justify-content: center }
-.flx.aln-c { align-items: center }
-
-.grid { display: grid }
-.grid.dyn { grid-template-columns: repeat(auto-fit, minmax(var(--size-dyn-col-min), 1fr)) }
-
-.gap { gap: var(--size-pad-y) }
-
-.banner { height: 5rem }

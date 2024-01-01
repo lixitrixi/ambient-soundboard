@@ -1,8 +1,13 @@
 extends layout
 
 block content
-  .grid.dyn.gap
-    each t in tracks
-      .track.pad.flx.row.btn(data-id=t.id)
-        h2= t.name
-        //- span.material-symbols-outlined.mgn-l-a play_arrow
+  .flx.gap
+    .btn.border.nosel.hide-empty#clear-tags(style="padding: 0 1ch") X
+    .flx.gap#tags
+      each tag in tags
+        .tag.btn.border.nosel(data-tag-id=tag.id, style="padding: 0 1ch")= tag.name
+  .grid.dyn.gap.mgn-t#tracks
+    each track in tracks
+      .pad.flx.row.aln-c.gap.jfy-sb(data-track-id=track.id)
+        h2= track.name
+        input(type="range", min="0", max="10", value="0", autocomplete="off")

@@ -4,9 +4,15 @@ const db = require('../services/db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    var tracks;
     db.getTracks()
-        .then(function(tracks) {
-            res.render('index', { title: 'StAmbience', tracks: tracks });
+        .then(function(ts) {
+            tracks = ts;
+            return db.getTags();
+        })
+        .then(function(tags) {
+            console.log(tags);
+            res.render('index', { tracks, tags });
         })
         .catch(function(error) {
             res.render('error', { message: 'Error', error: error });

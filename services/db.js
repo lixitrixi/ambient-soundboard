@@ -1,4 +1,4 @@
-const { get } = require('../routes');
+
 
 require('dotenv').config();
 
@@ -20,10 +20,15 @@ function Track(id, name, fileName, tags) {
     this.tags = tags;
 }
 
+function Tag(id, name) {
+    this.id = id;
+    this.name = name;
+}
+
 function resultToTrack(result) {
     return new Promise(function(resolve, reject) {
         let id = result.trackId;
-        getTrackTags(id)
+        getTrackTagIds(id)
             .then(function(tags) {
                 resolve(new Track(
                     id,
@@ -38,13 +43,25 @@ function resultToTrack(result) {
     });
 }
 
-function getTrackTags(trackId) {
+function getTrackTagIds(trackId) {
     return new Promise(function(resolve, reject) {
-        con.query('SELECT Tags.name \
+        con.query('SELECT Tags.tagId \
             FROM Tags JOIN TrackTags ON Tags.tagId = TrackTags.tagId \
             WHERE TrackTags.trackId = ?', [trackId])
             .then(function(results) {
-                resolve(results[0].map((res) => res.name));
+                resolve(results[0].map((res) => res.tagId));
+            })
+            .catch(function(error) {
+                reject(error);
+            });
+    });
+}
+
+function getTags() {
+    return new Promise(function(resolve, reject) {
+        con.query('SELECT * FROM Tags')
+            .then(function(results) {
+                resolve(results[0].map((res) => new Tag(res.tagId, res.name)));
             })
             .catch(function(error) {
                 reject(error);
@@ -95,5 +112,6 @@ function getTrack(trackId) {
 
 module.exports = {
     getTracks,
-    getTrack
+    getTrack,
+    getTags
 };
